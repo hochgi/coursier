@@ -7,8 +7,6 @@ import com.typesafe.sbt.pgp._
 import com.typesafe.sbt.SbtProguard._
 import coursier.ShadingPlugin.autoImport._
 
-import xerial.sbt.Pack.{packAutoSettings, packExcludeArtifactTypes}
-
 import Aliases._
 
 object Settings {
@@ -251,10 +249,6 @@ object Settings {
         PgpKeys.publishLocalSigned := PgpKeys.publishLocalSigned.in(Shading).value
       )
   
-  lazy val generatePack = packAutoSettings :+ {
-    packExcludeArtifactTypes += "pom"
-  }
-
   lazy val proguardedArtifact = Def.setting {
     Artifact(
       moduleName.value,

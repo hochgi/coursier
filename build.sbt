@@ -142,11 +142,11 @@ lazy val extra = project
   )
 
 lazy val cli = project
+  .enablePlugins(PackPlugin)
   .dependsOn(coreJvm, cache, extra)
   .settings(
     shared,
     dontPublishIn("2.10", "2.12"),
-    generatePack,
     proguard,
     coursierPrefix,
     libs ++= {
@@ -247,10 +247,10 @@ lazy val `sbt-shading` = project
   )
 
 lazy val `sbt-launcher` = project
+  .enablePlugins(PackPlugin)
   .dependsOn(cache)
   .settings(
     shared,
-    generatePack,
     dontPublishIn("2.10", "2.12"),
     libs ++= {
       if (scalaBinaryVersion.value == "2.11")
@@ -265,9 +265,9 @@ lazy val `sbt-launcher` = project
   )
 
 lazy val `http-server` = project
+  .enablePlugins(PackPlugin)
   .settings(
     shared,
-    generatePack,
     dontPublishIn("2.10", "2.11"),
     libs ++= {
       if (scalaBinaryVersion.value == "2.12")
